@@ -1,6 +1,25 @@
 <!doctype html>
 <html class="no-js" lang="eng">
 
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Donut Calculator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+    </head>
+    <body>
+      <h1>This is a calculator for donut sales estimates.</h1>
+      <p id="message">You will be prompted for store specific data and this program will tell you the hourly demand as well as the daily total demand for the store.</p>
+
+      <input id="engage" type="text"></input>
+
+
 <script>
   function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
       this.name       = name;
@@ -48,29 +67,11 @@
     };
 
     console.log(stores[i].name + " needs " + stores[i].total + " donuts per day");
+
+    var b = document.getElementById("message");
+    b.textContent = 'Hi';
   }
 
 </script>
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Donut Calculator</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-      <h1>This is a calculator for donut sales estimates.</h1>
-      <p id="message">You will be prompted for store specific data and this program will tell you the hourly demand as well as the daily total demand for the store.</p>
-
-      <input id="engage" type="text"></input>
-
     </body>
 </html>
