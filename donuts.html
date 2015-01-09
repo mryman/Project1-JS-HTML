@@ -15,9 +15,9 @@
     </head>
     <body>
       <h1>This is a calculator for donut sales estimates.</h1>
-      <p id="message">You will be prompted for store specific data and this program will tell you the hourly demand as well as the daily total demand for the store.</p>
+      <p id="message">Would you like to know about local donut sales? </p>
 
-      <input id="engage" type="text"></input>
+      <input id="engage" type="text">
 
 
 <script>
@@ -59,25 +59,25 @@
   var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
   var msgbox = document.getElementById("message");
   msgbox.innerHTML = "";
-  
- /* if (userReply.lowercase = "y" || "yes"){
-run something};
-else {
-  msgbox.innerHTML = "Sorry you don't like donuts."
-}*/
 
-  for(i = 0; i <= (stores.length - 1); i++){
-  //Running a conditional loop to produce data for each hour of the day that the store is open
-    stores[i].dailyTtl();
-    console.log("-------------------------------------");
-    for(k = 0; k <= 10; k++) {
-      msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+  var userReply = document.getElementById("engage");
+  console.log(userReply);
+  if ((userReply.lowercase === "y" )|| (userReply.lowercase === "yes")){
+
+    for(i = 0; i <= (stores.length - 1); i++){
+    //Running a conditional loop to produce data for each hour of the day that the store is open
+      stores[i].dailyTtl();
+      console.log("-------------------------------------");
+      for(k = 0; k <= 10; k++) {
+        msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+      };
+
+
+      msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
     };
-
-
-    msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
-
- 
+  }
+  else {
+    msgbox.innerHTML = "Sorry you don't like donuts.";
   }
 
 </script>
