@@ -15,10 +15,10 @@
     </head>
     <body>
       <h1>This is a calculator for donut sales estimates.</h1>
-      <p id="message">Would you like to know about local donut sales? </p>
+      <p id="message">Would you like to see data for local stores or provide your own data for one store? Type <em>all</em> or <em>custom</em>.</p>
 
 
-      <input type="text" id="engage" placeholder="Type here">      
+      <input type="text" id="engage" placeholder="Type here">
       <button id="confirmbutton"()>Confirm</button>
 
 
@@ -58,18 +58,18 @@
   stores[4] = new Store ("Ballard", 11, [25, 75], 33, 1);
 
 
-  var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
+  var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m.", "6 and 7 p.m.", "7 and 8 p.m."];
   var msgbox = document.getElementById("message");
   var clicked = document.getElementById("confirmbutton");
-  
+
 
   clicked.addEventListener('click', executeMain, false);
-  
+
   function executeMain(){
   console.log(userReply)
   var userReply = document.getElementById("engage").value.toLowerCase();
   console.log(userReply)
-  if ((userReply === "y" )|| (userReply === "yes")){
+  if (userReply === "all"){
     msgbox.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
     //Running a conditional loop to produce data for each hour of the day that the store is open
