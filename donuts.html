@@ -18,6 +18,7 @@
       <p id="message">Would you like to know about local donut sales? </p>
 
       <input id="engage" type="text">
+      <button id="checkclick">Confirm</button>
 
 
 <script>
@@ -61,7 +62,6 @@
   msgbox.innerHTML = "";
 
   var userReply = document.getElementById("engage");
-  console.log(userReply);
   if ((userReply.lowercase === "y" )|| (userReply.lowercase === "yes")){
 
     for(i = 0; i <= (stores.length - 1); i++){
