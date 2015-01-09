@@ -17,8 +17,9 @@
       <h1>This is a calculator for donut sales estimates.</h1>
       <p id="message">Would you like to know about local donut sales? </p>
 
-      <input id="engage" type="text">
-      <button id="checkclick">Confirm</button>
+
+      <input type="text" id="engage" value="Type here">      
+      <button id="confirmbutton"()>Confirm</button>
 
 
 <script>
@@ -59,11 +60,16 @@
 
   var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
   var msgbox = document.getElementById("message");
-  msgbox.innerHTML = "";
-
+  
   var userReply = document.getElementById("engage");
-  if ((userReply.lowercase === "y" )|| (userReply.lowercase === "yes")){
+  var clicked = document.getElementById("confirmbutton");
+  
+  clicked.addEventListener('click', executeMain, false);
 
+  
+  function executeMain(){
+  if ((userReply.lowercase === "y" )|| (userReply.lowercase === "yes")){
+    msgbox.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
     //Running a conditional loop to produce data for each hour of the day that the store is open
       stores[i].dailyTtl();
@@ -79,7 +85,7 @@
   else {
     msgbox.innerHTML = "Sorry you don't like donuts.";
   }
-
+  };
 </script>
     </body>
 </html>
