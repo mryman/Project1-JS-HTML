@@ -46,6 +46,7 @@
       return customers;
     };
     this.dailyTtl =function(){
+      this.total = 0;
       var ttlPerHr;
       for(j = 1; j <= 11; j++) {
         this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
@@ -83,8 +84,11 @@
 
 
   function executeAll(){
-    draw_boxes.innerHTML = "";
-    msgbox.innerHTML = "";
+    storeName.innerHTML = "";
+    footTraf.innerHTML = "";
+    avgEnt.innerHTML = "";
+    numPurch.innerHTML = "";
+    goClicked.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
     //Running a conditional loop to produce data for each hour of the day that the store is open
       stores[i].dailyTtl();
