@@ -1,7 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="eng">
-
-
 
     <head>
         <meta charset="utf-8">
@@ -21,36 +19,42 @@
   <!--     <input type="text" id="engage" placeholder="Type here"> -->
       <button id="all_btn">All</button>
       <button id="custom_btn">Custom</button>
-      <section id="input_boxes"> <!-- add five data input boxes here --></section>
+      <section id="input_boxes">
+        <div id="1"></div>
+        <div id='2'></div>
+        <div id='3'></div>
+        <div id='4'></div>
+        <div id='5'></div>
+      </section>
 
       <section id="full_report"></section>
 
 <script>
   function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
-      this.name       = name;
-      this.hrsOp      = hrsOp;
-      this.hrlyFt     = hrlyFt;
-      this.percentEnt = percentEnt;
-      this.qtyPer     = qtyPer;
-      this.hrlyPurch  = [];
-      this.total      = 0;
-      /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
-      this.ranTraffic = function getRandomInt(min, max) {
-        var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
-        return ranTraf;
-        var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
-        return customers;
-      };
-      this.dailyTtl =function(){
-        var ttlPerHr;
-        for(j = 1; j <= 11; j++) {
-          this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
-          ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
-          this.total += ttlPerHr;
-        }
-        return this.total;
+    this.name       = name;
+    this.hrsOp      = hrsOp;
+    this.hrlyFt     = hrlyFt;
+    this.percentEnt = percentEnt;
+    this.qtyPer     = qtyPer;
+    this.hrlyPurch  = [];
+    this.total      = 0;
+    /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
+    this.ranTraffic = function getRandomInt(min, max) {
+      var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
+      return ranTraf;
+      var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
+      return customers;
+    };
+    this.dailyTtl =function(){
+      var ttlPerHr;
+      for(j = 1; j <= 11; j++) {
+        this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
+        ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
+        this.total += ttlPerHr;
       }
+      return this.total;
     }
+  }
 
   var stores = [];
 
@@ -65,14 +69,21 @@
   var msgbox = document.getElementById("full_report");
   var all_clicked = document.getElementById("all_btn");
   var cust_clicked = document.getElementById("custom_btn");
+  var goClicked = document.getElementById("5");
+  var draw_boxes = document.getElementById("input_boxes");
+  var storeName = document.getElementById("1");
+  var footTraf = document.getElementById("2");
+  var avgEnt = document.getElementById("3");
+  var numPurch = document.getElementById("4");
 
 
   all_clicked.addEventListener('click', executeAll, false);
-  all_clicked.addEventListener('click', executeChoice, false);
-
+  cust_clicked.addEventListener('click', executeChoice, false);
+//  goClicked.addEventListener('click', executeGo, false);
 
 
   function executeAll(){
+    draw_boxes.innerHTML = "";
     msgbox.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
     //Running a conditional loop to produce data for each hour of the day that the store is open
@@ -82,9 +93,18 @@
         msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
       };
       msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
-    };
+    }
   }
-    if (userReply === "custom"){
+
+  function executeChoice(){
+    msgbox.innerHTML = "";
+    storeName.innerHTML = "<input type='text' id='inStore' placeholder=''>";
+    footTraf.innerHTML = "<input type='text' id='inFootTraf' placeholder=''>";
+    avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder=''>";
+    numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder=''>";
+    goClicked.innerHTML = "<button id='go_btn'>Go</button>";
+
+  /*  if (userReply === "custom"){
     msgbox.innerHTML = "Please enter your store name";
 
     userReply = document.getElementById("engage").value.toLowerCase();
@@ -93,7 +113,7 @@
     choice = extractdata();
 
     var control = userReply;
-
+*/
   };
 </script>
     </body>
