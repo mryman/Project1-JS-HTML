@@ -1,124 +1,129 @@
 <!DOCTYPE html>
 <html class="no-js" lang="eng">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Donut Calculator</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Donut Calculator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-    </head>
-    <body>
-      <h1>This is a calculator for donut sales estimates.</h1>
-      <p id="message">Would you like to see data for local stores or provide your own data for one store? </p>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+  </head>
+  <body>
+    <h1>This is a calculator for donut sales estimates.</h1>
+    <p id="message">Would you like to see data for local stores or provide your own data for one store? </p>
 
+    <button id="all_btn">All</button>
+    <button id="custom_btn">Custom</button>
+    <section id="input_boxes">
+      <div id="1"></div>
+      <div id='2'></div>
+      <div id='3'></div>
+      <div id='4'></div>
+      <div id='5'></div>
+      <div id='6'></div>
+    </section>
 
-  <!--     <input type="text" id="engage" placeholder="Type here"> -->
-      <button id="all_btn">All</button>
-      <button id="custom_btn">Custom</button>
-      <section id="input_boxes">
-        <div id="1"></div>
-        <div id='2'></div>
-        <div id='3'></div>
-        <div id='4'></div>
-        <div id='5'></div>
-      </section>
+    <section id="full_report"></section>
 
-      <section id="full_report"></section>
-
-<script>
-  function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
-    this.name       = name;
-    this.hrsOp      = hrsOp;
-    this.hrlyFt     = hrlyFt;
-    this.percentEnt = percentEnt;
-    this.qtyPer     = qtyPer;
-    this.hrlyPurch  = [];
-    this.total      = 0;
-    /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
-    this.ranTraffic = function getRandomInt(min, max) {
-      var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
-      return ranTraf;
-      var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
-      return customers;
-    };
-    this.dailyTtl =function(){
-      this.total = 0;
-      var ttlPerHr;
-      for(j = 1; j <= 11; j++) {
-        this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
-        ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
-        this.total += ttlPerHr;
+    <script>
+      function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
+        this.name       = name;
+        this.hrsOp      = hrsOp;
+        this.hrlyFt     = hrlyFt;
+        this.percentEnt = percentEnt;
+        this.qtyPer     = qtyPer;
+        this.hrlyPurch  = [];
+        this.total      = 0;
+        /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
+        this.ranTraffic = function getRandomInt(min, max) {
+          var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
+          return ranTraf;
+          var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
+          return customers;
+        };
+        this.dailyTtl =function(){
+          this.total = 0;
+          var ttlPerHr;
+          for(j = 1; j <= 11; j++) {
+            this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
+            ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
+            this.total += ttlPerHr;
+          }
+          return this.total;
+        }
       }
-      return this.total;
-    }
-  }
 
-  var stores = [];
+      var stores = [];
 
-  stores[0] = new Store ("Downtown",11, [80, 220], 10, 4);
-  stores[1] = new Store ("Capitol Hill", 11, [5, 45], 45, 2);
-  stores[2] = new Store ("South Lake Union", 11, [180, 250], 5, 6);
-  stores[3] = new Store ("Wedgewood", 11, [20, 60], 20, 1.5);
-  stores[4] = new Store ("Ballard", 11, [25, 75], 33, 1);
+      stores[0] = new Store ("Downtown",11, [80, 220], 10, 4);
+      stores[1] = new Store ("Capitol Hill", 11, [5, 45], 45, 2);
+      stores[2] = new Store ("South Lake Union", 11, [180, 250], 5, 6);
+      stores[3] = new Store ("Wedgewood", 11, [20, 60], 20, 1.5);
+      stores[4] = new Store ("Ballard", 11, [25, 75], 33, 1);
 
 
-  var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
-  var msgbox = document.getElementById("full_report");
-  var all_clicked = document.getElementById("all_btn");
-  var cust_clicked = document.getElementById("custom_btn");
-  var goClicked = document.getElementById("5");
-  var draw_boxes = document.getElementById("input_boxes");
-  var storeName = document.getElementById("1");
-  var footTraf = document.getElementById("2");
-  var avgEnt = document.getElementById("3");
-  var numPurch = document.getElementById("4");
+      var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
+      var msgbox = document.getElementById("full_report");
+      var all_clicked = document.getElementById("all_btn");
+      var cust_clicked = document.getElementById("custom_btn");
+      var goClicked = document.getElementById("6");
+      var draw_boxes = document.getElementById("input_boxes");
+      var storeName = document.getElementById("1");
+      var footTrafMin = document.getElementById("2");
+      var footTrafMax = document.getElementById("3");
+      var avgEnt = document.getElementById("4");
+      var numPurch = document.getElementById("5");
 
 
-  all_clicked.addEventListener('click', executeAll, false);
-  cust_clicked.addEventListener('click', executeChoice, false);
-//  goClicked.addEventListener('click', executeGo, false);
+      all_clicked.addEventListener('click', executeAll, false);
+      cust_clicked.addEventListener('click', executeChoice, false);
+      goClicked.addEventListener('click', executeGo, false);
 
 
-  function executeAll(){
-    storeName.innerHTML = "";
-    footTraf.innerHTML = "";
-    avgEnt.innerHTML = "";
-    numPurch.innerHTML = "";
-    goClicked.innerHTML = "";
-    for(i = 0; i <= (stores.length - 1); i++){
-    //Running a conditional loop to produce data for each hour of the day that the store is open
-      stores[i].dailyTtl();
-      console.log("-------------------------------------");
-      for(k = 0; k <= 10; k++) {
-        msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
-      };
-      msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
-    }
-  }
+      function executeAll(){
+        storeName.innerHTML = "";
+        footTrafMin.innerHTML = "";
+        footTrafMax.innerHTML = "";
+        avgEnt.innerHTML = "";
+        numPurch.innerHTML = "";
+        goClicked.innerHTML = "";
+        for(i = 0; i <= (stores.length - 1); i++){
+        //Running a conditional loop to produce data for each hour of the day that the store is open
+          stores[i].dailyTtl();
+          for(k = 0; k <= 10; k++) {
+            msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+          };
+          msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
+        }
+      }
 
-  function executeChoice(){
-    msgbox.innerHTML = "";
-    storeName.innerHTML = "<input type='text' id='inStore' placeholder=''>";
-    footTraf.innerHTML = "<input type='text' id='inFootTraf' placeholder=''>";
-    avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder=''>";
-    numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder=''>";
-    goClicked.innerHTML = "<button id='go_btn'>Go</button>";
+      function executeChoice(){
+        msgbox.innerHTML = "";
+        storeName.innerHTML = "<input type='text' id='inStore' placeholder='Enter store name'>";
+        footTrafMin.innerHTML = "<input type='text' id='inFootTraf' placeholder='Hrly people passing (min)'>";
+        footTrafMax.innerHTML = "<input type='text' id='inFootTraf' placeholder='Hrly people passing (max)'>";
+        avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'>";
+        numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder='Avg donuts per person'>";
+        goClicked.innerHTML = "<button id='go_btn'>Go</button>";
 
-  /*  if (userReply === "custom"){
-    msgbox.innerHTML = "Please enter your store name";
 
-    userReply = document.getElementById("engage").value.toLowerCase();
-    console.log(userReply);
-    var cust_store = [];
-    choice = extractdata();
+        function executeGo(){
+          var cust_store = [];
+          var footTraf = [];
+          footTraf.push(footTrafMin, footTrafMax);
+          cust_store = Store (storeName, 11, footTraf, avgEnt, numPurch);
+          cust_store.dailyTtl();
+          for(k = 0; k <= 10; k++) {
+              msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+          };
+          msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");
 
-    var control = userReply;
-*/
-  };
-</script>
-    </body>
+        }
+      }
+
+    </script>
+  </body>
 </html>
