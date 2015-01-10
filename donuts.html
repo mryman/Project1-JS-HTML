@@ -108,20 +108,20 @@
         avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'>";
         numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder='Avg donuts per person'>";
         goClicked.innerHTML = "<button id='go_btn'>Go</button>";
+      }
 
 
-        function executeGo(){
-          var cust_store = [];
-          var footTraf = [];
-          footTraf.push(footTrafMin, footTrafMax);
-          cust_store = Store (storeName, 11, footTraf, avgEnt, numPurch);
-          cust_store.dailyTtl();
-          for(k = 0; k <= 10; k++) {
-              msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
-          };
-          msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");
+      function executeGo(){
+        var cust_store = [];
+        var footTraf = [];
+        footTraf.push(footTrafMin, footTrafMax);
+        cust_store = new Store (storeName, 11, footTraf, avgEnt, numPurch);
+        cust_store.dailyTtl();
+        for(k = 0; k <= 10; k++) {
+            msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+        };
+        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");
 
-        }
       }
 
     </script>
