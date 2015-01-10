@@ -19,11 +19,11 @@
 
 
   <!--     <input type="text" id="engage" placeholder="Type here"> -->
-      <button id="all"()>All</button>
-      <button id="custom"()>Custom</button>
-      <section id="input_boxes"()> <!-- add five data input boxes here --></section>
+      <button id="all_btn">All</button>
+      <button id="custom_btn">Custom</button>
+      <section id="input_boxes"> <!-- add five data input boxes here --></section>
 
-      <section id="full_report"()></section>
+      <section id="full_report"></section>
 
 <script>
   function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
@@ -62,18 +62,17 @@
 
 
   var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
-  var msgbox = document.getElementById("message");
-  var clicked = document.getElementById("confirmbutton");
-  var choice = executeMain;
-  var custom_stat = [];
+  var msgbox = document.getElementById("full_report");
+  var all_clicked = document.getElementById("all_btn");
+  var cust_clicked = document.getElementById("custom_btn");
 
 
-  clicked.addEventListener('click', choice, false);
+  all_clicked.addEventListener('click', executeAll, false);
+  all_clicked.addEventListener('click', executeChoice, false);
 
 
-  function executeMain(){
-  var userReply = document.getElementById("engage").value.toLowerCase();
-  if (userReply === "all"){
+
+  function executeAll(){
     msgbox.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
     //Running a conditional loop to produce data for each hour of the day that the store is open
@@ -82,12 +81,10 @@
       for(k = 0; k <= 10; k++) {
         msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
       };
-
-
       msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
     };
   }
-  else if (userReply === "custom"){
+    if (userReply === "custom"){
     msgbox.innerHTML = "Please enter your store name";
 
     userReply = document.getElementById("engage").value.toLowerCase();
@@ -96,24 +93,7 @@
     choice = extractdata();
 
     var control = userReply;
-    while (userReply == control){
-    }
-    /*cust_store.push(userReply);
-    console.log(cust_store[0]);
 
-   this.name       = name;
-      this.hrsOp      = hrsOp;
-      this.hrlyFt     = hrlyFt;
-      this.percentEnt = percentEnt;
-      this.qtyPer     = qtyPer;
-      this.hrlyPurch  = [];
-      this.total      = 0; */
-
-  }
-
-  else {
-    msgbox.innerHTML = "Sorry you don't like donuts.";
-  }
   };
 </script>
     </body>
