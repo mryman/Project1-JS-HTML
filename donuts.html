@@ -15,12 +15,15 @@
     </head>
     <body>
       <h1>This is a calculator for donut sales estimates.</h1>
-      <p id="message">Would you like to see data for local stores or provide your own data for one store? Type <em>all</em> or <em>custom</em>.</p>
+      <p id="message">Would you like to see data for local stores or provide your own data for one store? </p>
 
 
-      <input type="text" id="engage" placeholder="Type here">
-      <button id="confirmbutton"()>Confirm</button>
+  <!--     <input type="text" id="engage" placeholder="Type here"> -->
+      <button id="all"()>All</button>
+      <button id="custom"()>Custom</button>
+      <section id="input_boxes"()> <!-- add five data input boxes here --></section>
 
+      <section id="full_report"()></section>
 
 <script>
   function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
@@ -58,17 +61,18 @@
   stores[4] = new Store ("Ballard", 11, [25, 75], 33, 1);
 
 
-  var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m.", "6 and 7 p.m.", "7 and 8 p.m."];
+  var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
   var msgbox = document.getElementById("message");
   var clicked = document.getElementById("confirmbutton");
+  var choice = executeMain;
+  var custom_stat = [];
 
 
-  clicked.addEventListener('click', executeMain, false);
+  clicked.addEventListener('click', choice, false);
+
 
   function executeMain(){
-  console.log(userReply)
   var userReply = document.getElementById("engage").value.toLowerCase();
-  console.log(userReply)
   if (userReply === "all"){
     msgbox.innerHTML = "";
     for(i = 0; i <= (stores.length - 1); i++){
@@ -83,6 +87,30 @@
       msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
     };
   }
+  else if (userReply === "custom"){
+    msgbox.innerHTML = "Please enter your store name";
+
+    userReply = document.getElementById("engage").value.toLowerCase();
+    console.log(userReply);
+    var cust_store = [];
+    choice = extractdata();
+
+    var control = userReply;
+    while (userReply == control){
+    }
+    /*cust_store.push(userReply);
+    console.log(cust_store[0]);
+
+   this.name       = name;
+      this.hrsOp      = hrsOp;
+      this.hrlyFt     = hrlyFt;
+      this.percentEnt = percentEnt;
+      this.qtyPer     = qtyPer;
+      this.hrlyPurch  = [];
+      this.total      = 0; */
+
+  }
+
   else {
     msgbox.innerHTML = "Sorry you don't like donuts.";
   }
