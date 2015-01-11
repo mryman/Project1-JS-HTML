@@ -116,18 +116,18 @@
         var footTrafMin = document.getElementById("inTrafMin");
         var footTrafMax = document.getElementById("inTrafMax");
         var inPercEnt = document.getElementById("inPercEnt");
-        var numPurch = document.getElementById("inNumPurch")
-
-        var cust_store = [];
+        var numPurch = document.getElementById("inNumPurch");
         var footTraf = [];
-        footTraf.push(footTrafMin, footTrafMax);
-        cust_store = new Store (storeName, 11, footTraf, avgEnt, numPurch);
-        cust_store.dailyTtl();
+
+        footTraf.push(footTrafMin.value, footTrafMax.value);
+        var custStore = new Store(inStore.value, 11, footTraf.value, inPercEnt.value, numPurch.value);
+
+        custStore.dailyTtl();
+        /*
         for(k = 0; k <= 10; k++) {
             msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
         };
-        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");
-
+        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");*/
       }
 
     </script>
