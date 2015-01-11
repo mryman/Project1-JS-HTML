@@ -111,16 +111,19 @@
       }
 
       function executeGo(){
-        
+
         var inStore = document.getElementById("inStore");
         var footTrafMin = document.getElementById("inTrafMin");
         var footTrafMax = document.getElementById("inTrafMax");
         var inPercEnt = document.getElementById("inPercEnt");
-        var numPurch = document.getElementById("inNumPurch");
+        var numPurch = document.getElementById("numPurch");
         var stores = [];
         var customArray = [];
-        customArray.push(inStore.value, "11", footTrafMin.value, footTrafMax.value, inPercEnt.value, numPurch.value);
-        stores = new Store(customArray [0], customArray [1], "[" + customArray[2], customArray[3] + "]", customArray[4], customArray[5]);
+        var ftRange = [];
+        ftRange = [Number(footTrafMin.value), Number(footTrafMax.value)];
+        console.log(ftRange);
+        customArray.push(inStore.value, "11", ftRange.value, inPercEnt.value, numPurch.value);
+        stores = new Store(customArray [0], customArray [1], customArray[2], customArray[3], customArray[4]);
 
         console.log(stores.name);
         console.log(stores.hrsOp);
@@ -130,7 +133,8 @@
         console.log(stores.hrlyPurch);
         console.log(stores.total);
         console.log(stores.ranTraffic.value);
-        console.log(stores.dailyTtl.value;
+        console.log(stores.dailyTtl.value);
+        console.log(stores);
 
 
 //code above this line in funciton executeGO() works.
