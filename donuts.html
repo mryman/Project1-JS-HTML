@@ -15,7 +15,7 @@
     <h1>This is a calculator for donut sales estimates.</h1>
     <p id="message">Would you like to see data for local stores or provide your own data for one store? </p>
 
-    <button id="all_btn">All</button>
+    <button id="all_btn">Local</button>
     <button id="custom_btn">Custom</button>
     <section id="input_boxes">
       <div id="1"></div>
@@ -103,8 +103,8 @@
       function executeChoice(){
         msgbox.innerHTML = "";
         storeName.innerHTML = "<input type='text' id='inStore' placeholder='Enter store name'>";
-        footTrafMin.innerHTML = "<input type='text' id='inFootTraf' placeholder='Hrly people passing (min)'>";
-        footTrafMax.innerHTML = "<input type='text' id='inFootTraf' placeholder='Hrly people passing (max)'>";
+        footTrafMin.innerHTML = "<input type='text' id='inTrafMin' placeholder='Hrly people passing (min)'>";
+        footTrafMax.innerHTML = "<input type='text' id='inTrafMax' placeholder='Hrly people passing (max)'>";
         avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'>";
         numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder='Avg donuts per person'>";
         goClicked.innerHTML = "<button id='go_btn'>Go</button>";
@@ -112,16 +112,22 @@
 
 
       function executeGo(){
-        var cust_store = [];
+        var inStore = document.getElementById("inStore");
+        var footTrafMin = document.getElementById("inTrafMin");
+        var footTrafMax = document.getElementById("inTrafMax");
+        var inPercEnt = document.getElementById("inPercEnt");
+        var numPurch = document.getElementById("inNumPurch");
         var footTraf = [];
-        footTraf.push(footTrafMin, footTrafMax);
-        cust_store = new Store (storeName, 11, footTraf, avgEnt, numPurch);
-        cust_store.dailyTtl();
+
+        footTraf.push(footTrafMin.value, footTrafMax.value);
+        var custStore = new Store(inStore.value, 11, footTraf.value, inPercEnt.value, numPurch.value);
+
+        custStore.dailyTtl();
+        /*
         for(k = 0; k <= 10; k++) {
             msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
         };
-        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");
-
+        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");*/
       }
 
     </script>
