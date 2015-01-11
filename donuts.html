@@ -39,21 +39,21 @@
         this.total      = 0;
         /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
         this.ranTraffic = function getRandomInt(min, max) {
-          var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
-          return ranTraf;
-          var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
-          return customers;
-        };
-        this.dailyTtl =function(){
-          this.total = 0;
-          var ttlPerHr;
-          for(j = 1; j <= 11; j++) {
-            this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
-            ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
-            this.total += ttlPerHr;
-          }
-          return this.total;
-        }
+                            var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
+                            return ranTraf;
+                            var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
+                            return customers;
+                          };
+        this.dailyTtl   = function(){
+                            this.total = 0;
+                            var ttlPerHr;
+                            for(j = 1; j <= 11; j++) {
+                              this.hrlyPurch.push(this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]));
+                              ttlPerHr = this.ranTraffic(this.hrlyFt[0], this.hrlyFt[1]);
+                              this.total += ttlPerHr;
+                            }
+                            return this.total;
+                          }
       }
 
       var stores = [];
@@ -110,24 +110,38 @@
         goClicked.innerHTML = "<button id='go_btn'>Go</button>";
       }
 
-
       function executeGo(){
+        
         var inStore = document.getElementById("inStore");
         var footTrafMin = document.getElementById("inTrafMin");
         var footTrafMax = document.getElementById("inTrafMax");
         var inPercEnt = document.getElementById("inPercEnt");
         var numPurch = document.getElementById("inNumPurch");
-        var footTraf = [];
+        var stores = [];
+        var customArray = [];
+        customArray.push(inStore.value, "11", footTrafMin.value, footTrafMax.value, inPercEnt.value, numPurch.value);
+        stores = new Store(customArray [0], customArray [1], "[" + customArray[2], customArray[3] + "]", customArray[4], customArray[5]);
 
-        footTraf.push(footTrafMin.value, footTrafMax.value);
-        var custStore = new Store(inStore.value, 11, footTraf.value, inPercEnt.value, numPurch.value);
+        console.log(stores.name);
+        console.log(stores.hrsOp);
+        console.log(stores.hrlyFt);
+        console.log(stores.percentEnt);
+        console.log(stores.qtyPer);
+        console.log(stores.hrlyPurch);
+        console.log(stores.total);
+        console.log(stores.ranTraffic.value);
+        console.log(stores.dailyTtl.value;
 
-        custStore.dailyTtl();
-        /*
+
+//code above this line in funciton executeGO() works.
+
+        stores.dailyTtl();
+
         for(k = 0; k <= 10; k++) {
-            msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+            msgbox.innerHTML = msgbox.innerHTML + (stores.name + " needs " + stores.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
         };
-        msgbox.innerHTML = msgbox.innerHTML + (cust_store.name + " needs " + cust_store.total + " donuts per day<br>");*/
+        msgbox.innerHTML = msgbox.innerHTML + (stores.name + " needs " + stores.total + " donuts per day<br>");
+
       }
 
     </script>
