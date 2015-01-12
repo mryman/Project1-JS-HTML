@@ -40,8 +40,7 @@
         /*Borrowed code below from http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range.  Calculates how many customers enter based on random traffic generated from function and then multiplies by average donuts purchased per customer*/
         this.ranTraffic = function getRandomInt(min, max) {
                             var ranTraf = Math.floor(Math.random() * (max - min + 1)) + min;
-                            return ranTraf;
-                            var customers = Math.floor((this.ranTraffic(min,max) * (this.percentEnt / 100)) * this.qtyPer);
+                            var customers = Math.floor((ranTraf * (this.percentEnt / 100)) * this.qtyPer);
                             return customers;
                           };
         this.dailyTtl   = function(){
@@ -91,7 +90,6 @@
         numPurch.innerHTML = "";
         goClicked.innerHTML = "";
         for(i = 0; i <= (stores.length - 1); i++){
-        //Running a conditional loop to produce data for each hour of the day that the store is open
           stores[i].dailyTtl();
           for(k = 0; k <= 10; k++) {
             msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
@@ -111,33 +109,19 @@
       }
 
       function executeGo(){
-
         var inStore = document.getElementById("inStore");
         var footTrafMin = document.getElementById("inTrafMin");
         var footTrafMax = document.getElementById("inTrafMax");
-        var inPercEnt = document.getElementById("inPercEnt");
-        var numPurch = document.getElementById("numPurch");
+        var percEnt = document.getElementById("inPercEnt");
+        var numPurch = document.getElementById("inNumPurch");
         var stores = [];
         var customArray = [];
         var ftRange = [];
         ftRange = [Number(footTrafMin.value), Number(footTrafMax.value)];
-        console.log(ftRange);
-        customArray.push(inStore.value, "11", ftRange.value, inPercEnt.value, numPurch.value);
+        percEnt = Number(percEnt.value);
+        numPurch = Number(numPurch.value);
+        customArray.push(inStore.value, 11, ftRange, percEnt, numPurch);
         stores = new Store(customArray [0], customArray [1], customArray[2], customArray[3], customArray[4]);
-
-        console.log(stores.name);
-        console.log(stores.hrsOp);
-        console.log(stores.hrlyFt);
-        console.log(stores.percentEnt);
-        console.log(stores.qtyPer);
-        console.log(stores.hrlyPurch);
-        console.log(stores.total);
-        console.log(stores.ranTraffic.value);
-        console.log(stores.dailyTtl.value);
-        console.log(stores);
-
-
-//code above this line in funciton executeGO() works.
 
         stores.dailyTtl();
 
