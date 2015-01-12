@@ -1,8 +1,12 @@
 The purpose of this project is to integrate a HTML file with our donuts.html Javascript file so that input and output occur in a browser window for a user to interact with.
 
-For our input, we want the user to see a text input window that asks them if they wish to see  demand for donuts at various Top Pot locations. The input from the user should be a simple yes or no.
+The user is initially presented with two buttons to select from.  The button labeled local will run the script with static data and output the statistics for the 5 stores.
 
-Our output should be the results of our script running in a clean readable format or a simple display message if the user opts for no.
+If the user selects the custom button, the user is presented with 5 input boxes where they can put data for a store of their choice.  The script then uses this data to produce output in a similar fashion to the static store data.
 
+Meaningful addition feature:
+User can choose between a custom data set or the orignal stored data set.
+User can click between the two even after initial choosing.
 
-
+Known issues:
+Doesn't have input validation checks.
