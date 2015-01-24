@@ -66,9 +66,9 @@
 
       var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
       var $msgbox = $("#full_report");
-      var all_clicked = document.getElementById("all_btn");
-      var cust_clicked = document.getElementById("custom_btn");
-      var goClicked = document.getElementById("6");
+      var $all_clicked = $("#all_btn");
+      var $cust_clicked = $("#custom_btn");
+      var $goClicked = $("#6");
       var draw_boxes = document.getElementById("input_boxes");
       var storeName = document.getElementById("1");
       var footTrafMin = document.getElementById("2");
@@ -77,9 +77,9 @@
       var numPurch = document.getElementById("5");
 
 
-      all_clicked.addEventListener('click', executeAll, false);
-      cust_clicked.addEventListener('click', executeChoice, false);
-      goClicked.addEventListener('click', executeGo, false);
+      $all_clicked.on('click', executeAll);
+      $cust_clicked.on('click', executeChoice);
+      $goClicked.on('click', executeGo);
 
 
       function executeAll(){
@@ -100,7 +100,7 @@
         footTrafMax.innerHTML = "<input type='text' id='inTrafMax' placeholder='Hrly people passing (max)'>";
         avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'>";
         numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder='Avg donuts per person'>";
-        goClicked.innerHTML = "<button id='go_btn'>Go</button>";
+        $goClicked.html("<button id='go_btn'>Go</button>");
       }
 
       function executeGo(){
@@ -121,9 +121,9 @@
         stores.dailyTtl();
 
         for(k = 0; k <= 10; k++) {
-            $msgbox.html() = $msgbox.html() + (stores.name + " needs " + stores.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+            $msgbox.html($msgbox.html() + (stores.name + " needs " + stores.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>");
         };
-        $msgbox.html() = $msgbox.html() + (stores.name + " needs " + stores.total + " donuts per day<br>");
+        $msgbox.html($msgbox.html() + (stores.name + " needs " + stores.total + " donuts per day<br>"));
 
       }
     });
