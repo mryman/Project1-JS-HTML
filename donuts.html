@@ -83,12 +83,7 @@
 
 
       function executeAll(){
-        storeName.innerHTML = "";
-        footTrafMin.innerHTML = "";
-        footTrafMax.innerHTML = "";
-        avgEnt.innerHTML = "";
-        numPurch.innerHTML = "";
-        goClicked.innerHTML = "";
+        $("#input_boxes div").html("");
         for(i = 0; i <= (stores.length - 1); i++){
           stores[i].dailyTtl();
           for(k = 0; k <= 10; k++) {
