@@ -69,12 +69,11 @@
       var $all_clicked = $("#all_btn");
       var $cust_clicked = $("#custom_btn");
       var $goClicked = $("#6");
-      var draw_boxes = document.getElementById("input_boxes");
-      var storeName = document.getElementById("1");
-      var footTrafMin = document.getElementById("2");
-      var footTrafMax = document.getElementById("3");
-      var avgEnt = document.getElementById("4");
-      var numPurch = document.getElementById("5");
+      var $storeName = $("#1");
+      var $footTrafMin = $("#2");
+      var $footTrafMax = $("#3");
+      var $avgEnt = $("#4");
+      var $numPurch = $("#5");
 
 
       $all_clicked.on('click', executeAll);
@@ -95,27 +94,27 @@
 
       function executeChoice(){
         $msgbox.html("");
-        storeName.innerHTML = "<input type='text' id='inStore' placeholder='Enter store name'>";
-        footTrafMin.innerHTML = "<input type='text' id='inTrafMin' placeholder='Hrly people passing (min)'>";
-        footTrafMax.innerHTML = "<input type='text' id='inTrafMax' placeholder='Hrly people passing (max)'>";
-        avgEnt.innerHTML = "<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'>";
-        numPurch.innerHTML = "<input type='text' id='inNumPurch' placeholder='Avg donuts per person'>";
+        $storeName.html("<input type='text' id='inStore' placeholder='Enter store name'/>");
+        $footTrafMin.html("<input type='text' id='inTrafMin' placeholder='Hrly people passing (min)'/>");
+        $footTrafMax.html("<input type='text' id='inTrafMax' placeholder='Hrly people passing (max)'/>");
+        $avgEnt.html("<input type='text' id='inPercEnt' placeholder='Percent of passing who enter'/>");
+        $numPurch.html("<input type='text' id='inNumPurch' placeholder='Avg donuts per person'/>");
         $goClicked.html("<button id='go_btn'>Go</button>");
       }
 
       function executeGo(){
-        var inStore = document.getElementById("inStore");
-        var footTrafMin = document.getElementById("inTrafMin");
-        var footTrafMax = document.getElementById("inTrafMax");
-        var percEnt = document.getElementById("inPercEnt");
-        var numPurch = document.getElementById("inNumPurch");
+        var $inStore = $("#inStore").val();
+        var $footTrafMin = $("#inTrafMin").val();
+        var $footTrafMax = $("#inTrafMax").val();
+        var $percEnt = $("#inPercEnt").val();
+        var $numPurch = $("#inNumPurch").val();
         var stores = [];
         var customArray = [];
         var ftRange = [];
-        ftRange = [Number(footTrafMin.value), Number(footTrafMax.value)];
-        percEnt = Number(percEnt.value);
-        numPurch = Number(numPurch.value);
-        customArray.push(inStore.value, 11, ftRange, percEnt, numPurch);
+        ftRange = [Number($footTrafMin), Number($footTrafMax)];
+        $percEnt = Number($percEnt);
+        $numPurch = Number($numPurch);
+        customArray.push($inStore, 11, ftRange, $percEnt, $numPurch);
         stores = new Store(customArray [0], customArray [1], customArray[2], customArray[3], customArray[4]);
 
         stores.dailyTtl();
