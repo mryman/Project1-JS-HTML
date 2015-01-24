@@ -27,8 +27,9 @@
     </section>
 
     <section id="full_report"></section>
-
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js" ></script>
     <script>
+    $(function() {
       function Store(name, hrsOp, hrlyFt, percentEnt, qtyPer) {
         this.name       = name;
         this.hrsOp      = hrsOp;
@@ -64,7 +65,7 @@
 
 
       var hrs = ["7 and 8 a.m.", "8 and 9 a.m.", "9 and 10 a.m.", "10 and 11 a.m.", "11 a.m. and 12 p.m.", "12 and 1 p.m.", "1 and 2 p.m.", "2 and 3 p.m.", "3 and 4 p.m.", "4 and 5 p.m.", "5 and 6 p.m."];
-      var msgbox = document.getElementById("full_report");
+      var $msgbox = $("#full_report");
       var all_clicked = document.getElementById("all_btn");
       var cust_clicked = document.getElementById("custom_btn");
       var goClicked = document.getElementById("6");
@@ -91,14 +92,14 @@
         for(i = 0; i <= (stores.length - 1); i++){
           stores[i].dailyTtl();
           for(k = 0; k <= 10; k++) {
-            msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+            $msgbox.html($msgbox.html() + (stores[i].name + " needs " + stores[i].hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>");
           };
-          msgbox.innerHTML = msgbox.innerHTML + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>");
+          $msgbox.html($msgbox.html() + (stores[i].name + " needs " + stores[i].total + " donuts per day<br>"));
         }
       }
 
       function executeChoice(){
-        msgbox.innerHTML = "";
+        $msgbox.html("");
         storeName.innerHTML = "<input type='text' id='inStore' placeholder='Enter store name'>";
         footTrafMin.innerHTML = "<input type='text' id='inTrafMin' placeholder='Hrly people passing (min)'>";
         footTrafMax.innerHTML = "<input type='text' id='inTrafMax' placeholder='Hrly people passing (max)'>";
@@ -125,12 +126,12 @@
         stores.dailyTtl();
 
         for(k = 0; k <= 10; k++) {
-            msgbox.innerHTML = msgbox.innerHTML + (stores.name + " needs " + stores.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
+            $msgbox.html() = $msgbox.html() + (stores.name + " needs " + stores.hrlyPurch[k] + " donuts between " + hrs[k]) + "<br>";
         };
-        msgbox.innerHTML = msgbox.innerHTML + (stores.name + " needs " + stores.total + " donuts per day<br>");
+        $msgbox.html() = $msgbox.html() + (stores.name + " needs " + stores.total + " donuts per day<br>");
 
       }
-
+    });
     </script>
   </body>
 </html>
